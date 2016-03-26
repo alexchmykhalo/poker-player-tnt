@@ -101,7 +101,7 @@ function rankHand(game_state) {
       
       
     } else {
-      if (compare(a.rank, 'T')>0 && compare(b.rank, 'T')>0) {
+      if (compare(a.rank, '10')>0 && compare(b.rank, '10')>0) {
         console.log('diff high');
         return 0;
       }
