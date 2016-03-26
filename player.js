@@ -9,16 +9,26 @@ module.exports = {
 
   bet_request: function(game_state, bet) {
 
-    //var rainman = require('./rainman')(game_state);
+    var rainman = require('./rainman')(game_state);
+
 
 var start = new Date(); console.log(start);
     for(var i = 0 ; i< 47;++i){
-      
-    var rainman = RM(game_state);
+
+    var rainman1 = RM(game_state);
   }
   var end = new Date(); console.log(end);
   console.log(end-start);
 
+/*
+var currentRank = RM(game_state);
+
+var suits = ["diamonds", "spades", "clubs", "hearts"];
+var ranks = ["2","3","4","5","6","7","8","9"]
+
+arr.forEach(function(item, i, arr) {
+  alert( i + ": " + item + " (массив:" + arr + ")" );
+});*/
 
     /*
   	var pairCount = this.pairCount(game_state);
