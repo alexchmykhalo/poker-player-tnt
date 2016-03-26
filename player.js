@@ -10,20 +10,22 @@ module.exports = {
 
   try {
     //console.log(rankHand(game_state));
-      var rainman = require('./rainman')(game_state);
+      // var rainman = require('./rainman')(game_state);
 
       if (rankHand(game_state) == 0)
       {
         bet(Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack));
-      } else {
+      } 
+      else bet(0);
+      // else {
 
-        if (rainman.rank > 0 )
-        {
-          //if (rainman.rank == 1 && rainman.value > 7)
-            bet(Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack));
-        } else {
-            bet(0);
-        }
+      //   if (rainman.rank > 0 )
+      //   {
+      //     //if (rainman.rank == 1 && rainman.value > 7)
+      //       bet(Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack));
+      //   } else {
+      //       bet(0);
+      //   }
       }
   }
   catch(err) {
