@@ -122,9 +122,9 @@ function rankHand(game_state) {
 function getAllCards(game_state){
   var all_cards = [];
   if(game_state.round == 0){
-    all_cards = game_state.players[game_state.in_action];
+    all_cards = game_state.players[game_state.in_action].hole_cards;
   } else {
-    all_cards = all_cards.concat(game_state.players[game_state.in_action]);
+    all_cards = all_cards.concat(game_state.players[game_state.in_action].hole_cards);
     all_cards = all_cards.concat(game_state.community_cards);
   }
   return all_cards;
