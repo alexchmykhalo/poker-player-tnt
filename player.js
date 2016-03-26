@@ -5,6 +5,8 @@ module.exports = {
 
   bet_request: function(game_state, bet) {
 
+    var rainman = require('./rainman')(game_state);
+
     /*
   	var pairCount = this.pairCount(game_state);
   	var card3Count = this.has3Count(game_state);
@@ -33,13 +35,21 @@ module.exports = {
 
 
 try {
-	console.log(rankHand(game_state));
+	//console.log(rankHand(game_state));
+
 
     if (rankHand(game_state) == 0)
     {
       bet(Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack))
     } else {
-      bet(0);
+
+      if (rainman.rank > 0 )
+      {
+        //if (rainman.rank == 1 && rainman.value > 7)
+          bet(Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack))
+      } else {
+          bet(0);
+      }
     }
 }
 catch(err) {
