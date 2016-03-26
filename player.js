@@ -11,19 +11,19 @@ module.exports = {
 
   showdown: function(game_state) {
 
-  }
+  },
 
   getPlayer: function(game_state){
   	return game_state.players[game_state.in_action];
-  }
+  },
 
   getMyCards: function(game_state){
   	return this.getPlayer.hole_cards;
-  }
+  },
 
   getCommunityCards: function(game_state){
   	return game_state.community_cards;
-  }
+  },
 
   getAllCards : function(game_state){
 		var myCards = this.getMyCards(game_state);
