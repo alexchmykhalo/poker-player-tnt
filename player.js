@@ -5,7 +5,7 @@ module.exports = {
 
   bet_request: function(game_state, bet) {
 
-    bet(Math.max(game_state.current_buy_in * 2, 350);
+    bet(Math.max(game_state.current_buy_in * 2, 350));
     console.log(game_state);
   },
 
