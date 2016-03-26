@@ -32,7 +32,8 @@ module.exports = {
 */
 
 
-console.log(rankHand(game_state));
+try {
+	console.log(rankHand(game_state));
 
     if (rankHand(game_state) == 0)
     {
@@ -40,6 +41,10 @@ console.log(rankHand(game_state));
     } else {
       bet(0);
     }
+}
+catch(err) {
+	bet(0);
+}
 
     
     //console.log(game_state);
