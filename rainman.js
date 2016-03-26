@@ -11,7 +11,7 @@ if (err) {
 return err;
 }
 rainmanResponse = JSON.parse(body);
-console.log(rainmanResponse);
+//console.log(rainmanResponse);
 });
 return rainmanResponse;
 };

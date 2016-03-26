@@ -1,11 +1,24 @@
 
+var RM = require('./rainman')
+
 module.exports = {
+
+  
 
   VERSION: "Default JavaScript folding player",
 
   bet_request: function(game_state, bet) {
 
-    var rainman = require('./rainman')(game_state);
+    //var rainman = require('./rainman')(game_state);
+
+var start = new Date(); console.log(start);
+    for(var i = 0 ; i< 47;++i){
+      
+    var rainman = RM(game_state);
+  }
+  var end = new Date(); console.log(end);
+  console.log(end-start);
+
 
     /*
   	var pairCount = this.pairCount(game_state);
