@@ -26,7 +26,7 @@ module.exports = {
       //   } else {
       //       bet(0);
       //   }
-      }
+      // }
   }
   catch(err) {
     bet(0);
