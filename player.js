@@ -11,7 +11,7 @@ module.exports = {
 
     var rainman = require('./rainman')(game_state);
 
-
+/*
 var start = new Date(); console.log(start);
     for(var i = 0 ; i< 47;++i){
 
@@ -19,15 +19,18 @@ var start = new Date(); console.log(start);
   }
   var end = new Date(); console.log(end);
   console.log(end-start);
-
+*/
 /*
 var currentRank = RM(game_state);
 
 var suits = ["diamonds", "spades", "clubs", "hearts"];
-var ranks = ["2","3","4","5","6","7","8","9"]
+var ranks = ["2","3","4","5","6","7","8","9", "T", "J", "Q", "K", "A"];
 
-arr.forEach(function(item, i, arr) {
-  alert( i + ": " + item + " (массив:" + arr + ")" );
+suits.forEach(function(suit) {
+  ranks.forEach(function(rank)
+  {
+    console.log(suit+' '+rank);
+  });
 });*/
 
     /*
