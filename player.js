@@ -10,7 +10,7 @@ module.exports = {
 
   try {
     //console.log(rankHand(game_state));
-      var rainman = require('./rainman');
+      var rainman = require('./rainman')(game_state);
 
       if (rankHand(game_state) == 0)
       {
