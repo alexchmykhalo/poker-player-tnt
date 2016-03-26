@@ -67,7 +67,7 @@ module.exports = {
 function compare (a, b) {
 
   var set = [];
-  set['T']=10;
+  set['10']=10;
   set['J']=11;
   set['Q']=12;
   set['K']=13;
@@ -119,13 +119,20 @@ function rankHand(game_state) {
     return 1;
   }
 
+function getAllCards(game_state){
+  var all_cards = [];
+  if(game_state.round == 0){
+    all_cards = game_state.players[game_state.in_action];
+  } else {
+    all_cards = all_cards.concat(game_state.players[game_state.in_action]);
+    all_cards = all_cards.concat(game_state.community_cards);
+  }
+  return all_cards;
+}
 
 function haveXKind(game_state, order) {
-  var all_cards;
-  if(game_state.round == 0) all_cards = game_state.players[game_state.in_action];
-  else {
-    all_cards = game_state.players[game_state.in_action].concat(game_state.community_cards);
-  }
+  var all_cards = getAllCards(game_state);
+
   var haveCombination = false;
 
   for (var i = 0; i < all_cards.length; i++) {
@@ -148,11 +155,8 @@ function haveXKind(game_state, order) {
 }
 
 function have2Pair(game_state) {
-  var all_cards;
-  if(game_state.round == 0) all_cards = game_state.players[game_state.in_action];
-  else {
-    all_cards = game_state.players[game_state.in_action].concat(game_state.community_cards);
-  }
+  var all_cards = getAllCards(game_state);
+  
   
   var haveCombination = false;
   
@@ -179,11 +183,8 @@ function have2Pair(game_state) {
 }
 
 function have5SameSuit(game_state) {
-  var all_cards;
-  if(game_state.round == 0) all_cards = game_state.players[game_state.in_action];
-  else {
-    all_cards = game_state.players[game_state.in_action].concat(game_state.community_cards);
-  }
+  var all_cards = getAllCards(game_state);
+  
   
   var haveCombination = false;
   
