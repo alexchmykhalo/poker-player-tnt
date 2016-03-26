@@ -12,11 +12,17 @@ module.exports = {
     //console.log(rankHand(game_state));
       // var rainman = require('./rainman')(game_state);
 
-      if (rankHand(game_state) == 0)
-      {
-        bet(Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack));
-      } 
-      else bet(0);
+      if(game_state.round == 0){
+        if(rankHand(game_state) == 0)
+        {
+          bet(Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack));
+        } 
+        else bet(0);
+      }else{
+        if(haveXKind(game_state,4) || haveXKind(game_state,3) || haveXKind(game_state,2)){
+          bet(Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack));
+        }else bet(0);
+      }
       // else {
 
       //   if (rainman.rank > 0 )
@@ -112,3 +118,31 @@ function rankHand(game_state) {
     }
     return 1;
   }
+
+
+function haveXKind(game_state, order) {
+  var all_cards;
+  if(game_state.round == 0) all_cards = game_state.players[game_state.in_action];
+  else {
+    all_cards = game_state.players[game_state.in_action].concat(game_state.community_cards);
+  }
+  var haveCombination = false;
+
+  for (var i = 0; i < all_cards.length; i++) {
+      var nextRank = all_cards[i].rank;
+      var nextMaxOrder = 1;
+      for (var j = 0; j < all_cards.length; j++) {
+          if (i !== j) {
+              if (all_cards[j].rank === nextRank) {
+                  nextMaxOrder = nextMaxOrder + 1;
+              }
+          }
+      }
+      if (nextMaxOrder === order) {
+          haveCombination = true;
+          break;
+      }
+  }
+
+  return haveCombination;
+}
