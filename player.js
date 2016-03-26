@@ -18,7 +18,7 @@ module.exports = {
   }
 
   getMyCards: function(game_state){
-  	return getPlayer.hole_cards;
+  	return this.getPlayer.hole_cards;
   }
 
   getCommunityCards: function(game_state){
@@ -26,8 +26,8 @@ module.exports = {
   }
 
   getAllCards : function(game_state){
-		myCards = getMyCards(game_state);
-		otherCards = getCommunityCards(game_state);
+		var myCards = this.getMyCards(game_state);
+		var otherCards = this.getCommunityCards(game_state);
 		return myCards.concat(otherCards);
 	}
 
