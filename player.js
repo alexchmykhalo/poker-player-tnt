@@ -11,17 +11,17 @@ module.exports = {
   try {
     //console.log(rankHand(game_state));
       // var rainman = require('./rainman')(game_state);
-
+      
+      var priority = getPriority(game_state);
+      var ourBet = getBet(game_state, priority);
       if(game_state.round == 0){
-        if(rankHand(game_state) == 0)
-        {
-          bet(Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack));
-        } 
-        else bet(0);
+        if(rankHand(game_state) == 0){
+          bet(ourBet);
+        } else bet(0);
       }else{
-        if(haveXKind(game_state,4) || haveXKind(game_state,3) || haveXKind(game_state,2) || have2Pair(game_state) || have5SameSuit(game_state)){
-          bet(Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack));
-        }else bet(0);
+        if (haveXKind(game_state,4) || haveXKind(game_state,3) || haveXKind(game_state,2) || have2Pair(game_state) || have5SameSuit(game_state)){
+          bet(ourBet);
+        } else bet(0);
       }
       // else {
 
@@ -207,4 +207,27 @@ function have5SameSuit(game_state) {
   if(pairCount >= 1) haveCombination = true;
 
   return haveCombination;
+}
+
+
+function getPriority(game_state){
+  var priority = 0;
+  if(haveXKind(game_state,2)) priority = 1;
+  if(have2Pair(game_state)) priority = 2;
+  if(haveXKind(game_state,3)) priority = 3;
+  //4
+  if(have5SameSuit(game_state)) priority = 5;
+  if(have2Pair(game_state) && haveXKind(game_state,3)) priority = 6;
+  if(haveXKind(game_state,4)) priority = 7;
+  //8
+  return priority;
+}
+function getBet(game_state, priority){
+  if (Math.round(Math.random())) {
+    return game_state.players[game_state.in_action].bet + game_state.minimum_raise;
+  } else {
+    return game_state.players[game_state.in_action].bet;
+  }
+
+  //return Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack);     
 }
