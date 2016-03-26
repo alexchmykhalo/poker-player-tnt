@@ -22,7 +22,9 @@ module.exports = {
   		//all in
   		bet(player.stack);
   	}else{
-	    bet(Math.max(game_state.minimum_raise, 350));
+  		var currentBet = Math.max(game_state.minimum_raise, 350);
+  		if(currentBet > player.stack) currentBet = player.stack;
+	    bet(currentBet);
 	    // console.log(game_state);
     }
   },
