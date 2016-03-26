@@ -19,7 +19,7 @@ module.exports = {
         } 
         else bet(0);
       }else{
-        if(haveXKind(game_state,4) || haveXKind(game_state,3) || haveXKind(game_state,2)){
+        if(haveXKind(game_state,4) || haveXKind(game_state,3) || haveXKind(game_state,2) || have2Pair(game_state) || have5SameSuit(game_state)){
           bet(Math.min(Math.max(game_state.minimum_raise * 2, 350),game_state.players[game_state.in_action].stack));
         }else bet(0);
       }
@@ -143,6 +143,68 @@ function haveXKind(game_state, order) {
           break;
       }
   }
+
+  return haveCombination;
+}
+
+function have2Pair(game_state) {
+  var all_cards;
+  if(game_state.round == 0) all_cards = game_state.players[game_state.in_action];
+  else {
+    all_cards = game_state.players[game_state.in_action].concat(game_state.community_cards);
+  }
+  
+  var haveCombination = false;
+  
+  var ranks = [];
+  all_cards.forEach(function (e) {
+      ranks.push(e.rank);    
+  });
+
+  ranks = ranks.sort();
+  //console.log(ranks);
+  var arrayLength = ranks.length;
+  var pairCount = 0;
+  for (var i = 0; i < arrayLength; i++) {
+    if(i < arrayLength - 1){
+      if(ranks[i]==ranks[i+1]){
+        pairCount++;
+        i++;
+      }
+    }
+  }
+  if(pairCount >= 2) haveCombination = true;
+
+  return haveCombination;
+}
+
+function have5SameSuit(game_state) {
+  var all_cards;
+  if(game_state.round == 0) all_cards = game_state.players[game_state.in_action];
+  else {
+    all_cards = game_state.players[game_state.in_action].concat(game_state.community_cards);
+  }
+  
+  var haveCombination = false;
+  
+  var suits = [];
+  all_cards.forEach(function (e) {
+      suits.push(e.suit);    
+  });
+
+  suits = suits.sort();
+  //console.log(ranks);
+  var arrayLength = suits.length;
+  var pairCount = 0;
+  for (var i = 0; i < arrayLength; i++) {
+    if(i < arrayLength - 4){
+      if(suits[i]==suits[i+1] && suits[i]==suits[i+2] && suits[i]==suits[i+3] && suits[i]==suits[i+4]){
+        pairCount++;
+        i++;
+      }
+    }
+  }
+  if(pairCount >= 1) haveCombination = true;
 
   return haveCombination;
 }
