@@ -22,8 +22,8 @@ module.exports = {
   		//all in
   		bet(player.stack);
   	}else{
-	    bet(Math.max(game_state.current_buy_in * 2, 350));
-	    console.log(game_state);
+	    bet(Math.max(game_state.minimum_raise, 350));
+	    // console.log(game_state);
     }
   },
 
